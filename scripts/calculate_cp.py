@@ -17,7 +17,7 @@ def parse_args():
 
 def load_base_stats():
     today_str = datetime.datetime.now().strftime("%Y%m%d")
-    base_stat_fp = BASESTAT_CSV_TEMPLATE.format(date=today_str)
+    base_stat_fp = BASESTAT_CSV.format(date=today_str)
     if not os.path.exists(base_stat_fp):
         sys.exit(f"Base stats CSV not found at {base_stat_fp}, please run scraper first.")
     print(f"Loading base stats from {base_stat_fp}")
@@ -41,8 +41,8 @@ def check_data_consistency(df_stat, cp_val):
 
     evo_names = sorted(set(d_evo.keys()))
     collect_names = []
-    if os.path.exists(COLLECTED_CSV_TEMPLATE.format(cp=cp_val)):
-        with open(COLLECTED_CSV_TEMPLATE.format(cp=cp_val), 'r', encoding='utf-8') as f:
+    if os.path.exists(COLLECTED_CSV.format(cp=cp_val)):
+        with open(COLLECTED_CSV.format(cp=cp_val), 'r', encoding='utf-8') as f:
             collect_names = [line.split(',')[0] for line in f.read().strip().split('\n')]
 
     errors = False
@@ -83,7 +83,7 @@ def calculate_cp(attack, defense, hp, attack_iv, defense_iv, hp_iv, multiplier):
 
 def create_cp_files(df_stat, d_multiplier, cp_val):
     print(f"Creating CP files for CP={cp_val}...")
-    output_folder = OUTPUT_CP_IV_FOLDER_TEMPLATE.format(cp=cp_val)
+    output_folder = OUTPUT_CP_IV_FOLDER.format(cp=cp_val)
     os.makedirs(output_folder, exist_ok=True)
     
     for _, row in df_stat.iterrows():
@@ -118,10 +118,10 @@ def create_cp_files(df_stat, d_multiplier, cp_val):
 def create_evolution_cp_file(d_evo, df_stat, d_multiplier, cp_val):
     print(f"Creating evolution CP CSV for CP={cp_val}...")
 
-    with open(COLLECTED_CSV_TEMPLATE.format(cp=cp_val), 'r', encoding='utf-8') as f:
+    with open(COLLECTED_CSV.format(cp=cp_val), 'r', encoding='utf-8') as f:
         collected = {i.split(',')[0]: i.split(',')[1].strip() for i in f.read().strip().split('\n')}
 
-    output_file_path = OUTPUT_ALL_FILE_TEMPLATE.format(cp=cp_val)
+    output_file_path = OUTPUT_ALL_FILE.format(cp=cp_val)
 
     with open(output_file_path, 'w', encoding='utf-8', newline='') as f_out:
         writer = csv.writer(f_out)
@@ -132,7 +132,7 @@ def create_evolution_cp_file(d_evo, df_stat, d_multiplier, cp_val):
 
         for poke_name in df_stat['Pokemon']:
 
-            cp_file_folder = OUTPUT_CP_IV_FOLDER_TEMPLATE.format(cp=cp_val)
+            cp_file_folder = OUTPUT_CP_IV_FOLDER.format(cp=cp_val)
             cp_file_path = os.path.join(cp_file_folder, f"cp{cp_val}_{poke_name}.csv")
             if not os.path.exists(cp_file_path):
                 continue

@@ -5,7 +5,7 @@ import lxml
 import os
 from io import StringIO
 
-from config import BASESTAT_CSV_TEMPLATE
+from config import BASESTAT_CSV
 
 def scrape_base_stats():
     """
@@ -13,7 +13,7 @@ def scrape_base_stats():
     Only scrapes if today's file not present.
     """
     today_str = datetime.datetime.now().strftime("%Y%m%d")
-    base_stat_fp = BASESTAT_CSV_TEMPLATE.format(date=today_str)
+    base_stat_fp = BASESTAT_CSV.format(date=today_str)
 
     if os.path.exists(base_stat_fp):
         print(f'Base stats already exists at {base_stat_fp}')
