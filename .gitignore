@@ -1,4 +1,2 @@
 .DS_store
-base_stat*.csv
-cp*
-old/
+scripts/__pycache__
