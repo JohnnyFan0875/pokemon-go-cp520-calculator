@@ -54,22 +54,22 @@ body {
 
 #evo-table th:nth-child(3),
 #evo-table td:nth-child(3) {
-  width: 60px;
+  width: 45px;
 }
 
 #evo-table th:nth-child(4),
 #evo-table td:nth-child(4) {
-  width: 60px;
+  width: 45px;
 }
 
 #evo-table th:nth-child(5),
 #evo-table td:nth-child(5) {
-  width: 60px;
+  width: 40px;
 }
 
 #evo-table th:nth-child(7),
 #evo-table td:nth-child(7) {
-  width: 90px;
+  width: 120px;
 }
 
 .dt-buttons {

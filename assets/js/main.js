@@ -38,7 +38,20 @@ $(document).ready(function () {
         });
       });
 
-      // Dropdown filter change events for Attack, Defense, HP columns
+      // Dropdown filter change events for Level,Attack, Defense, HP columns
+
+      $("#level-filter").on("change", function () {
+        const val = this.value;
+        if (val) {
+          table
+            .column(1)
+            .search("^LV" + val + "$", true, false)
+            .draw(); // exact match regex search on 2nd column (index 1)
+        } else {
+          table.column(1).search("").draw(); // clear filter if no selection
+        }
+      });
+
       $("#attack-filter").on("change", function () {
         let val = this.value;
         if (val === "") {
