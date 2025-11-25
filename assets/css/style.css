@@ -36,9 +36,14 @@ body {
   }
   /* Make top controls stack vertically */
   .top-controls {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    justify-items: flex-start;
     gap: 10px;
+
+  #toggle-switch {
+    margin-left: 0;
+  }
   }
 }
 
