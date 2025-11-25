@@ -42,11 +42,6 @@ body {
   }
 }
 
-#evo-table th:nth-child(2),
-#evo-table td:nth-child(2) {
-  width: 60px;
-}
-
 .dt-buttons {
   margin-bottom: 1em;
 }
